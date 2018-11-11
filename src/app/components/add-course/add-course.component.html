@@ -1,0 +1,79 @@
+
+  <div class="row mt-3">
+    <div class="col-md-6">
+      <h1>New course</h1>
+    </div>
+    <div class="col-md-6 text-right">
+      <a routerLink="/courses" class="btn btn-link">
+         <i class="fa fa-plus"></i> Back to list
+      </a>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-8 offset-md-2">
+
+    <form [formGroup]="form" enctype="multipart/form-data" (ngSubmit)="submit()">
+
+      <div class="form-group">
+        <label for="title">Title</label>
+        <input formControlName="title" type="text" name="title" id="title" class="form-control">
+        <div class="alert alert-danger" 
+            *ngIf="form.get('title').invalid && form.get('title').touched">
+             This field is required!!
+        </div>
+      </div>
+
+      <div class="form-group">
+          <label for="image">Image</label>
+            <div>
+              <button mat-stroked-button type="button" (click)="filePicker.click()">Pick Image</button>
+              <input type="file" #filePicker (change)="onImagePicked($event)">
+            </div>
+            <div class="image-preview" *ngIf="imagePreview !== '' && imagePreview && form.get('image').valid">
+              <img [src]="imagePreview" [alt]="form.value.title">
+            </div>
+
+          <div class="alert alert-danger" 
+            *ngIf="form.get('image').invalid && form.get('image').touched">
+             This field is required!!
+        </div>
+        </div>
+
+
+      <div class="form-group">
+          <label for="author">Author</label>
+          <select formControlName="author" name="author" id="author" class="form-control">
+            <option value="">Select one Author</option>
+            <option value="idbrahim">Mohamed IDBRAHIM</option>
+          </select>
+          <div class="alert alert-danger" *ngIf="form.get('author').invalid && form.get('author').touched">
+              This field is required!!
+          </div>
+      </div>
+
+      <div class="form-group" >
+          <label for="tags">Tags</label>
+          <select multiple formControlName="tags" name="tags" id="tags" class="form-control">
+            <option value="">Select one or more</option>
+            <option [value]="tag._id" *ngFor="let tag of tags">{{ tag.label }}</option>
+          </select>
+          <div class="alert alert-danger" *ngIf="form.get('tags').invalid && form.get('tags').touched">
+              This field is required!!
+          </div>
+      </div>
+
+      <div class="form-group">
+          <label for="price">Price</label>
+          <input formControlName="price" type="number" name="price" id="price" class="form-control">
+      </div>
+
+      <button class="btn btn-success btn-block">
+        <i class="fa fa-paper-plane"></i> Add new course
+      </button>
+
+      {{ course | json }}
+
+    </form>
+    </div>
+  </div>
