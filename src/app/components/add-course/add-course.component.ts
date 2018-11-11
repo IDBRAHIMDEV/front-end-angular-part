@@ -12,7 +12,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 })
 export class AddCourseComponent implements OnInit {
   
-  imagePreview = '';
+  imagePreview = null;
   course: Course = {
     title: "",
     price: 0,

@@ -6,5 +6,5 @@ export interface Course {
     author: string;
     price: number;
     date: string;
-    image: File;
+    image?: File;
 }
