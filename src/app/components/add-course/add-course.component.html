@@ -45,7 +45,7 @@
           <label for="author">Author</label>
           <select formControlName="author" name="author" id="author" class="form-control">
             <option value="">Select one Author</option>
-            <option value="idbrahim">Mohamed IDBRAHIM</option>
+            <option [value]="user._id" *ngFor="let user of users">{{ user.firstName }} {{ user.lastName | uppercase }}</option>
           </select>
           <div class="alert alert-danger" *ngIf="form.get('author').invalid && form.get('author').touched">
               This field is required!!

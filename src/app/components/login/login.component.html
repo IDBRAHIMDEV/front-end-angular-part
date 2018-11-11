@@ -1,0 +1,21 @@
+
+
+
+<div class="row mt-5">
+  <div class="col-md-6 mx-auto">
+   
+    
+      <div class="form-group">
+        <label for="email">email</label>
+        <input [(ngModel)]="email" type="text" name="email" id="email" class="form-control" placeholder="">
+      </div>
+
+      <div class="form-group">
+        <label for="password">password</label>
+        <input [(ngModel)]="password" type="password" name="password" id="password" class="form-control" placeholder="">
+      </div>
+
+     <button class="btn btn-warning btn-block" (click)="login()"><i class="fa fa-lock"></i> Login</button>
+
+  </div>
+</div>

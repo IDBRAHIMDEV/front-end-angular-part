@@ -1,3 +1,4 @@
+import { UserService } from './../../services/user.service';
 import { CourseService } from './../../services/course.service';
 import { TagService } from './../../services/tag.service';
 import { Component, OnInit } from '@angular/core';
@@ -5,6 +6,7 @@ import { Tag } from 'src/app/models/tag';
 import { Course } from 'src/app/models/course';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { User } from 'src/app/models/user';
 
 @Component({
   selector: 'app-add-course',
@@ -22,10 +24,12 @@ export class AddCourseComponent implements OnInit {
     date: "",
     isPublished: false
   }
-
+  
+  users: User[] = [];
   tags: Tag[] = [];
   form: FormGroup;
   constructor(
+              private userService: UserService,
               private tagService: TagService, 
               private courseService: CourseService,
               private router: Router
@@ -49,6 +53,11 @@ export class AddCourseComponent implements OnInit {
     this.tagService.getTags().subscribe((tags: Tag[]) => {
       this.tags = tags;
       console.log(tags)
+    })
+
+    this.userService.getUsers().subscribe((users: User[]) => {
+      this.users = users;
+      console.log(users)
     })
   }
 

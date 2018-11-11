@@ -5,14 +5,31 @@
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse" id="collapsibleNavId">
-    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-      <li class="nav-item active">
+    <ul class="navbar-nav mr-auto mt-2 mt-lg-0" *ngIf="userAutenticated">
+      <li class="nav-item ">
         <a class="nav-link" routerLink="/courses">Courses <span class="sr-only">(current)</span></a>
       </li>
 
-      <li class="nav-item active">
+      <li class="nav-item ">
           <a class="nav-link" routerLink="/users">Users <span class="sr-only">(current)</span></a>
         </li>
+    </ul>
+
+    <ul class="navbar-nav ml-auto" *ngIf="!userAutenticated">
+      <li class="nav-item">
+        <a routerLink="/register" class="nav-link"> <i class="fa fa-user"></i> Register</a>
+      </li>
+
+      <li class="nav-item">
+        <a routerLink="/login" class="nav-link"> <i class="fa fa-lock"></i> Login</a>
+      </li>
+    </ul>
+
+    <ul class="navbar-nav ml-auto" *ngIf="userAutenticated">
+      <li class="nav-item">
+        <button class="nav-link btn btn-link" (click)="logout()"> Logout</button>
+      </li>
+
     </ul>
   </div>
 </nav>

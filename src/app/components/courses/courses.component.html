@@ -20,7 +20,7 @@
             
             <ul class="list-group">
               
-              <li class="list-group-item">{{ course.author }} 
+              <li class="list-group-item">{{ course.author.firstName }} {{ course.author.lastName }} 
                 <i class="fa fa-power-off fa-my" [ngClass]="{ 'success': course.isPublished, 'danger': !course.isPublished }"></i>
               </li>
               <li class="list-group-item">{{ course.date }}</li>
