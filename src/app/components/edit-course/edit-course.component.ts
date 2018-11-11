@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-edit-course',
@@ -7,9 +8,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EditCourseComponent implements OnInit {
 
+  form: FormGroup;
   constructor() { }
 
   ngOnInit() {
+     
+    this.form = new FormGroup({
+      title: new FormControl(null, {
+        validators: [Validators.required]
+      }),
+    });
   }
 
 }

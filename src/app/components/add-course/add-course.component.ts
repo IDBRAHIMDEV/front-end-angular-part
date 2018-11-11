@@ -4,6 +4,7 @@ import { Component, OnInit } from '@angular/core';
 import { Tag } from 'src/app/models/tag';
 import { Course } from 'src/app/models/course';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-add-course',
@@ -24,12 +25,16 @@ export class AddCourseComponent implements OnInit {
 
   tags: Tag[] = [];
   form: FormGroup;
-  constructor(private tagService: TagService, private courseService: CourseService) { }
+  constructor(
+              private tagService: TagService, 
+              private courseService: CourseService,
+              private router: Router
+             ) { }
 
   ngOnInit() {
 
     this.form = new FormGroup({
-      title: new FormControl("salam", {
+      title: new FormControl(null, {
         validators: [Validators.required, Validators.minLength(3)]
       }),
       tags: new FormControl(null, { validators: [Validators.required] }),
@@ -63,7 +68,9 @@ export class AddCourseComponent implements OnInit {
   submit() {
     if(this.form.valid) {
       console.log(this.form.value)
-      this.courseService.createCourse(this.form.value).subscribe(res => console.log(res))
+      this.courseService.createCourse(this.form.value).subscribe(res => {
+        this.router.navigate(['/courses']);
+      })
     }else {
       alert(0)
     }
